@@ -1,6 +1,11 @@
-<?php include('connexion.php');
+<?php
+	//on fait appel au fichier de connexion 
+	include('connexion.php');
+	// on initialise une variable $msg qui va recevoir les messages insertion reussie ou les messages d'erreurs
 	$msg="";
+	//on verifie si l'utilisateur a bien cliquer sur le button valider
 	if (isset($_POST['btnValider'])){
+		// on insert les donnees provenant du formulaire dans la table categories 
 		$sql= "INSERT INTO categories (libelle,description) VALUES ('".$_POST['libelle']."','".$_POST['description']."')";
 		$result=mysqli_query($link	,$sql);
 		if ($result) {
@@ -30,6 +35,37 @@
 	</head>
 	<body>
 		<div class="container">
+			<div class="row"><!-- Menu -->
+
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<a class="navbar-brand" href="#">MaDouce Creation</a>
+						<ul class="nav navbar-nav">
+							<li class="active">
+								<a href="#">Accueil</a>
+							</li>
+							<li>
+								<a href="#">Contact</a>
+							</li>
+
+							<li>
+								<a href="admin.php">Admin</a>
+							</li>
+							<li>
+								<a href="articles.php">Articles</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+
+			</div>
+
+			<div class="row">
+
+				<img src="img/img1.jpg" width="100%" height="250px">
+
+			</div>
+			<br>
 
 			<div class="row">
 				<div class="col-md-2"></div>
@@ -48,13 +84,12 @@
 							<label for="">Description</label>
 							<input name="description" type="text" class="form-control" id="" placeholder="Description">
 						</div>
-							
-					--	<button name="btnValider" type="submit" class="btn btn-primary btn-lg btn-block">Valider</button>
+						<button name="btnValider" type="submit" class="btn btn-primary btn-lg btn-block">Valider</button>
 					</form>
 				</div>
 				<div class="col-md-2"></div>
 			</div>
-<br>
+			<br>
 			<div class="row">
 				<table class="table">
 					<thead>
@@ -70,18 +105,15 @@
 							$n=1;
 							$list=" SELECT * FROM categories";
 							$res= mysqli_query($link,$list);
-	while ($data = mysqli_fetch_array($res)){
-								
-							
-						 ?>
-						<tr>
-							<td> <?php echo $n; ?> </td>
-							<td><?php echo $data['libelle']; ?></td>
-							<td><?php echo $data['description']; ?></td>
-							<td></td>
-						</tr>
-						<?php $n++;
-						 } ?>
+							while ($data = mysqli_fetch_array($res)){?>
+							<tr>
+								<td> <?php echo $n; ?> </td>
+								<td><?php echo $data['libelle']; ?></td>
+								<td><?php echo $data['description']; ?></td>
+								<td></td>
+							</tr>
+							<?php $n++;
+						} ?>
 					</tbody>
 				</table>
 
@@ -89,7 +121,7 @@
 			
 
 		</div>
-		
+		<a href="articles.php">Voir article</a>
 
 		<!-- jQuery -->
 		<script src=""></script>

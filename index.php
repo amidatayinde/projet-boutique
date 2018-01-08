@@ -36,6 +36,9 @@
 							<li>
 								<a href="admin.php">Admin</a>
 							</li>
+							<li>
+								<a href="articles.php">Articles</a>
+							</li>
 						</ul>
 					</div>
 				</nav>
